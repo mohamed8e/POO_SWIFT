@@ -1,0 +1,49 @@
+class Stagiaire {
+    var nom: String
+    var prenom: String
+    var age: Int
+    
+    init(nom: String, prenom: String, age: Int) {
+        self.nom = nom
+        self.prenom = prenom
+        self.age = age
+    }
+    
+    func afficher() {
+        print("Je m'appelle \(nom) \(prenom), je suis âgé de \(age) ans.")
+    }
+}
+
+class TestStagiaire {
+    func lireStagiaire() -> Stagiaire {
+        print("Entrez le nom du stagiaire :")
+        let nom = readLine() ?? ""
+        
+        print("Entrez le prénom du stagiaire :")
+        let prenom = readLine() ?? ""
+        
+        print("Entrez l'âge du stagiaire :")
+        let ageString = readLine() ?? ""
+        let age = Int(ageString) ?? 0
+        
+        return Stagiaire(nom: nom, prenom: prenom, age: age)
+    }
+    
+    func tester() {
+        let stagiaire = lireStagiaire()
+        stagiaire.afficher()
+    }
+}
+
+let test = TestStagiaire()
+test.tester()
+/////////////////////////////////////////////////////////////////////
+Execution:
+swift /tmp/wzBMSZLu4I.swift
+Entrez le nom du stagiaire :
+mohamed
+Entrez le prénom du stagiaire :
+Elghamraoui
+Entrez l'âge du stagiaire :
+19
+Je m'appelle mohamed Elghamraoui, je suis âgé de 19 ans.

@@ -1,0 +1,22 @@
+import Foundation
+
+class Racine {
+    var x: Double
+    
+    init(x: Double) {
+        self.x = x
+    }
+    
+    func RacineCarre() {
+        let resultat = sqrt(x)
+        print("La racine carrée de \(x) est \(resultat)")
+    }
+}
+
+// Exemple d'utilisation de la classe Racine
+let racineObjet = Racine(x: 16)
+racineObjet.RacineCarre()
+//////////////////////////////////////////////////////////////////
+Execution:
+swift /tmp/42RpZWc40Q.swift
+La racine carrée de 16.0 est 4.0

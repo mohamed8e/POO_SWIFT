@@ -1,0 +1,54 @@
+class NoteStagiaire {
+    let nomstg: String
+    let prog: Double
+    let sys: Double
+    let res: Double
+    let ang: Double
+    
+    init(nomstg: String, prog: Double, sys: Double, res: Double, ang: Double) {
+        self.nomstg = nomstg
+        self.prog = prog
+        self.sys = sys
+        self.res = res
+        self.ang = ang
+    }
+    
+    func notes() {
+        print("Notes de \(nomstg):")
+        print("Programmation: \(prog)")
+        print("Système d'exploitation: \(sys)")
+        print("Réseau: \(res)")
+        print("Anglais: \(ang)")
+    }
+    
+    func somme() -> Double {
+        let total = prog + sys + res + ang
+        return total
+    }
+    
+    func moyenne() -> Double {
+        let moyenne = somme() / 4
+        return moyenne
+    }
+    
+    func bulletin() {
+        print("Bulletin de \(nomstg):")
+        notes()
+        print("Somme des notes: \(somme())")
+        print("Moyenne des notes: \(moyenne())")
+    }
+}
+
+// Example usage
+let stagiaire = NoteStagiaire(nomstg: "John Doe", prog: 85, sys: 76, res: 92, ang: 88)
+stagiaire.bulletin()
+/////////////////////////////////////////////////////////////////////////Execution : 
+swift /tmp/42RpZWc40Q.swift
+Bulletin de John Doe:
+Notes de John Doe:
+Programmation: 85.0
+Système d'exploitation: 76.0
+Réseau: 92.0
+Anglais: 88.0
+Somme des notes: 341.0
+Moyenne des notes: 85.25

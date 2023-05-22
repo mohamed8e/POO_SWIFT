@@ -1,0 +1,74 @@
+class Eleve {
+    var nom: String
+    var prenom: String
+    var notes: [Double]
+    
+    init(nom: String, prenom: String, notes: [Double]) {
+        self.nom = nom
+        self.prenom = prenom
+        self.notes = notes
+    }
+    
+    func moyenne() -> Double {
+        let total = notes.reduce(0, +)
+        return total / Double(notes.count)
+    }
+    
+    func afficher() {
+        print("Nom complet: \(nom) \(prenom)")
+        print("Notes:")
+        for (index, note) in notes.enumerated() {
+            print("Note \(index + 1): \(note)")
+        }
+        print("Moyenne: \(moyenne())")
+    }
+}
+
+class TestEleve {
+    func lireEleve() -> Eleve {
+        print("Entrez le nom de l'élève :")
+        let nom = readLine() ?? ""
+        
+        print("Entrez le prénom de l'élève :")
+        let prenom = readLine() ?? ""
+        
+        var notes: [Double] = []
+        for i in 1...3 {
+            print("Entrez la note \(i) :")
+            let noteString = readLine() ?? ""
+            let note = Double(noteString) ?? 0.0
+            notes.append(note)
+        }
+        
+        return Eleve(nom: nom, prenom: prenom, notes: notes)
+    }
+    
+    func tester() {
+        let eleve = lireEleve()
+        eleve.afficher()
+    }
+
+}
+
+let test = TestEleve()
+test.tester()
+////////////////////////////////////////////////////////////////////////
+Execution:
+swift /tmp/wzBMSZLu4I.swift
+Entrez le nom de l'élève :
+mohamed
+Entrez le prénom de l'élève :
+elghamraoui
+Entrez la note 1 :
+14
+Entrez la note 2 :
+23
+Entrez la note 3 :
+18
+Nom complet: mohamed elghamraoui
+Notes:
+Note 1: 14.0
+Note 2: 23.0
+Note 3: 18.0
+Moyenne: 18.333333333333332
+

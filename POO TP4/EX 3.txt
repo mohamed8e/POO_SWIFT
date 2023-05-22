@@ -1,0 +1,113 @@
+import Foundation
+
+class Employe {
+    var matricule: String
+    var nom: String
+    var prenom: String
+    var dateNaissance: Date
+    var dateEmbauche: Date
+    var salaire: Double
+    
+    init(matricule: String, nom: String, prenom: String, dateNaissance: Date, dateEmbauche: Date, salaire: Double) {
+        self.matricule = matricule
+        self.nom = nom.uppercased()
+        self.prenom = prenom.prefix(1).uppercased() + prenom.lowercased().dropFirst()
+        self.dateNaissance = dateNaissance
+        self.dateEmbauche = dateEmbauche
+        self.salaire = salaire
+    }
+    
+    func age() -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year], from: dateNaissance, to: Date())
+        return components.year ?? 0
+    }
+    
+    func anciennete() -> Int {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.year], from: dateEmbauche, to: Date())
+        return components.year ?? 0
+    }
+    
+    func augmenterSalaire() {
+        let anciennete = self.anciennete()
+        
+        if anciennete < 5 {
+            salaire *= 1.02
+        } else if anciennete < 10 {
+            salaire *= 1.05
+        } else {
+            salaire *= 1.1
+        }
+    }
+    
+    func afficher() {
+        let ancienSalaire = salaire / (1 + (Double(anciennete()) / 100))
+        augmenterSalaire()
+        
+        print("Matricule: \(matricule)")
+        print("Nom complet: \(nom) \(prenom)")
+        print("Age: \(age())")
+        print("Ancienneté: \(anciennete()) ans")
+        print("Ancien salaire: \(ancienSalaire)")
+        print("Nouveau Salaire: \(salaire)")
+    }
+}
+
+class TestEmploye {
+    func lireEmploye() -> Employe {
+        print("Entrez le matricule de l'employé :")
+        let matricule = readLine() ?? ""
+        
+        print("Entrez le nom de l'employé :")
+        let nom = readLine() ?? ""
+        
+        print("Entrez le prénom de l'employé :")
+        let prenom = readLine() ?? ""
+        
+        print("Entrez la date de naissance de l'employé (format: jj/mm/aaaa) :")
+        let dateNaissanceString = readLine() ?? ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM/yyyy"
+        let dateNaissance = dateFormatter.date(from: dateNaissanceString) ?? Date()
+        
+        print("Entrez la date d'embauche de l'employé (format: jj/mm/aaaa) :")
+        let dateEmbaucheString = readLine() ?? ""
+        let dateEmbauche = dateFormatter.date(from: dateEmbaucheString) ?? Date()
+        
+        print("Entrez le salaire de l'employé :")
+        let salaireString = readLine() ?? ""
+        let salaire = Double(salaireString) ?? 0.0
+        
+        return Employe(matricule: matricule, nom: nom, prenom: prenom, dateNaissance: dateNaissance, dateEmbauche: dateEmbauche, salaire: salaire)
+    }
+    
+    func tester() {
+        let employe = lireEmploye()
+        employe.afficher()
+    }
+}
+
+let test = TestEmploye()
+test.tester()
+////////////////////////////////////////////////////////////////////////
+Execution:
+swift /tmp/wzBMSZLu4I.swift
+Entrez le matricule de l'employé :
+1
+Entrez le nom de l'employé :
+mohamed
+Entrez le prénom de l'employé :
+elghamraoui
+Entrez la date de naissance de l'employé (format: jj/mm/aaaa) :
+28/2/2003
+Entrez la date d'embauche de l'employé (format: jj/mm/aaaa) :
+15/5/2018
+Entrez le salaire de l'employé :
+5300
+Matricule: 1
+Nom complet: MOHAMED Elghamraoui
+Age: 20
+Ancienneté: 5 ans
+Ancien salaire: 5047.619047619048
+Nouveau Salaire: 5565.0

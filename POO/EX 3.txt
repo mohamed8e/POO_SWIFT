@@ -1,0 +1,31 @@
+class Rectangle {
+    var longueur: Double
+    var largeur: Double
+    
+    init(longueur: Double, largeur: Double) {
+        self.longueur = longueur
+        self.largeur = largeur
+    }
+    
+    func perimetre() -> Double {
+        let perimetre = 2 * (longueur + largeur)
+        return perimetre
+    }
+    
+    func surface() -> Double {
+        let surface = longueur * largeur
+        return surface
+    }
+}
+
+// Exemple d'utilisation de la classe Rectangle
+let rectangleObjet = Rectangle(longueur: 5, largeur: 3)
+let perimetre = rectangleObjet.perimetre()
+let surface = rectangleObjet.surface()
+
+print("Périmètre du rectangle : \(perimetre)")
+print("Surface du rectangle : \(surface)")
+/////////////////////////////////////////////////////////////////////////Execution:
+swift /tmp/42RpZWc40Q.swift
+Périmètre du rectangle : 16.0
+Surface du rectangle : 15.0

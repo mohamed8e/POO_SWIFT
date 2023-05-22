@@ -1,0 +1,36 @@
+import Foundation
+
+class Cercle {
+    let a: Double
+    let b: Double
+    let r: Double
+    
+    init(a: Double, b: Double, r: Double) {
+        self.a = a
+        self.b = b
+        self.r = r
+    }
+    
+    func surface() -> Double {
+        let surface = Double.pi * pow(r, 2)
+        return surface
+    }
+    
+    func perimetre() -> Double {
+        let perimetre = 2 * Double.pi * r
+        return perimetre
+    }
+}
+
+// Example usage
+let cercleObjet = Cercle(a: 3, b: 4, r: 5)
+let surface = cercleObjet.surface()
+let perimetre = cercleObjet.perimetre()
+
+print("Surface du cercle : \(surface)")
+print("Périmètre du cercle : \(perimetre)")
+/////////////////////////////////////////////////////////////////////
+Execution:
+swift /tmp/42RpZWc40Q.swift
+Surface du cercle : 78.53981633974483
+Périmètre du cercle : 31.41592653589793
